@@ -167,6 +167,7 @@ button.contact-btn {
     position: relative;
     top: -10px;
     z-index: 1;
+    max-width: 360px;
 }
 .hero .hero-text h3 {
     font-size: 20px;
@@ -463,7 +464,6 @@ button.contact-btn {
 
 /* ~ Skill section styling starts */
 
-
 .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -533,13 +533,15 @@ button.contact-btn {
 }
 .resume .resume-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 20px;
 }
 .resume-row .column .sub-heading {
     color: var(--primary-clr);
     padding: 0px 0px 20px 30px;
+    padding: 20px;
 }
+
 .column .resume-contents {
     padding-left: 30px;
     border-left: 2px solid var(--primary-clr);
@@ -598,6 +600,26 @@ button.contact-btn {
     color: var(--secondary-heading);
     font-weight: 500;
 }
+
+/*  */
+
+.education-details {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+.education-detail {
+    font-weight: 700;
+    color: var(--secondary-heading);
+}
+
+.edu-detail {
+    font-weight: 400;
+    color: #ffffff;
+}
+
 /*   *** Resume Section Styling Ends ***  */
 
 /*   *** Portfolio Section Styling Starts ***   */
