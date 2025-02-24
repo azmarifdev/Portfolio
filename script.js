@@ -32,6 +32,18 @@ function scrollFunction() {
         homeSection.classList.remove('active');
     }
 }
+
+// CV download
+document.getElementById('downloadCV').addEventListener('click', function () {
+    const pdfUrl = './assets/azmarifCV.pdf';
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = "A. Z. M. Arif's CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
 // Home Section Ends
 
 // Portfolio Section Starts

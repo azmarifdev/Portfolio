@@ -200,11 +200,11 @@ button.contact-btn {
     margin: 15px 0px 35px;
     line-height: 1.2;
 }
-.hero .hero-text .hire-btn {
+.hero .hero-text .download-btn {
     padding: 10px 35px;
     box-shadow: 0px 20px 24px 3px rgba(5, 85, 92, 0.2);
 }
-.hero .hero-text .hire-btn:hover {
+.hero .hero-text .download-btn:hover {
     box-shadow: 0px 5px 15px 3px rgba(5, 85, 92, 0.2);
 }
 .hero .hero-image {
@@ -362,7 +362,7 @@ button.contact-btn {
     color: var(--text-clr);
     letter-spacing: 1px;
 }
-.about-desc .download-btn {
+.about-desc .hire-btn {
     border-radius: 25px;
     margin-top: 25px;
 }
