@@ -685,6 +685,7 @@ button.contact-btn {
     background-color: rgba(5, 85, 92, 0.7);
     color: var(--bg-clr-one);
     padding: 15px;
+    /* font-weight: 500; */
     overflow: hidden;
     transition: opacity 0.2s ease-in-out;
     opacity: 0;
@@ -698,12 +699,31 @@ button.contact-btn {
     border: 2px solid var(--bg-clr-one);
     color: var(--bg-clr-one);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 800;
     transition: 0.3s;
 }
 .item .overlay a:hover {
     background-color: var(--bg-clr-one);
     color: var(--primary-clr);
+}
+
+.mfp-open-tab {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    font-weight: extra-bold;
+    background: white;
+    padding: 17px 15px 15px 15px;
+    border-radius: 100%;
+    font-size: 25px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.mfp-open-tab:hover {
+    background-color: var(--primary-clr);
+    color: var(--bg-clr-one);
 }
 /*   *** Portfolio Section Styling Ends ***   */
 

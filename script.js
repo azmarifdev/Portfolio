@@ -47,7 +47,7 @@ document.getElementById('downloadCV').addEventListener('click', function () {
 // Home Section Ends
 
 // Portfolio Section Starts
-let $galleryContainer = $('.gallery').isotope({
+/* let $galleryContainer = $('.gallery').isotope({
     itemSelector: '.item',
     layoutMode: 'fitRows',
 });
@@ -69,7 +69,51 @@ $('.gallery').magnificPopup({
     gallery: {
         enabled: true,
     },
+}); */
+
+// Portfolio Section Starts
+// =============== FILTER GALLERY ===============
+let $galleryContainer = $('.gallery').isotope({
+    itemSelector: '.item',
+    layoutMode: 'fitRows',
 });
+
+$('.button-group .button').on('click', function () {
+    $('.button-group .button').removeClass('active');
+    $(this).addClass('active');
+
+    let value = $(this).attr('data-filter');
+    $galleryContainer.isotope({
+        filter: value,
+    });
+});
+
+// =============== MAGNIFIC POPUP WITH IFRAME ===============
+$('.gallery').magnificPopup({
+    delegate: '.overlay a',
+    type: 'iframe',
+    gallery: {
+        enabled: false,
+    },
+    callbacks: {
+        open: function () {
+            let popupInstance = $.magnificPopup.instance;
+            let currentUrl = popupInstance.currItem.src;
+
+            // 🔗
+            let openTabBtn = $('<a href="' + currentUrl + '" target="_blank" class="mfp-open-tab">🔗</a>');
+
+            openTabBtn.on('click', function (e) {
+                e.preventDefault();
+                window.open(currentUrl, '_blank').focus();
+                $.magnificPopup.close();
+            });
+
+            $('.mfp-content').append(openTabBtn);
+        },
+    },
+});
+
 // Portfolio Section Ends
 
 // Testimonials Section Starts
@@ -94,3 +138,32 @@ $('.testimonials-container').owlCarousel({
         },
     },
 });
+
+// contact form section starts
+
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Use EmailJS to send email
+    emailjs
+        .send('BrmtseVaBhEyJudPn4oEi', 'portfolio', {
+            from_name: name,
+            from_email: email,
+            message: message,
+        })
+        .then(
+            function (response) {
+                alert('Message sent successfully!');
+            },
+            function (error) {
+                alert('Failed to send message. Please try again.');
+            },
+        );
+});
+
+// contact form section ends
