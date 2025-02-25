@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Enable smooth scrolling globally
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    // =============== PAGE LOAD হলে স্ক্রল টপে সেট করো ===============
+    // =============== PAGE LOAD ===============
     window.onload = function () {
         window.scrollTo(0, 0);
     };
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (!name || !email || !message) {
-            showToast('⚠️ সবগুলো ফিল্ড পূরণ করুন!', 'error');
+            showToast('⚠️ Complete all the fields!', 'error');
             return;
         }
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log('SUCCESS!', response.status, response.text);
 
                     // Show success toast
-                    showToast('✅ আপনার ইমেইল পাঠানো হয়েছে, শীঘ্রই উত্তর পাবেন!', 'success');
+                    showToast('✅ Your email has been sent, get the answer soon!', 'success');
 
                     // Clear form fields manually
                     nameInput.value = '';
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log('FAILED...', error);
 
                     // Show error toast
-                    showToast('❌ দুঃখিত, ইমেইল পাঠানো যায়নি। পরে আবার চেষ্টা করুন!', 'error');
+                    showToast('❌ Sorry, the email could not be sent. Try again later!', 'error');
                 },
             );
     });
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Toast color based on type
         if (type === 'success') {
-            toast.style.background = '#0AC2CE';
+            toast.style.background = '#05555c';
         } else if (type === 'error') {
             toast.style.background = '#F57F17';
         }
