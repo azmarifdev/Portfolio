@@ -617,7 +617,7 @@ button.contact-btn {
 
 .edu-detail {
     font-weight: 400;
-    color: #ffffff;
+    color: var(--text-clr);
 }
 
 /*   *** Resume Section Styling Ends ***  */

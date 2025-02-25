@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Enable smooth scrolling globally
     document.documentElement.style.scrollBehavior = 'smooth';
 
+    // =============== PAGE LOAD হলে স্ক্রল টপে সেট করো ===============
+    window.onload = function () {
+        window.scrollTo(0, 0);
+    };
+
     // =========== Mobile Menu Toggle ===========
     const menuBtn = document.querySelector('.menu-btn');
     const menu = document.querySelector('.nav-links');
@@ -41,6 +46,74 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.click();
                 document.body.removeChild(link);
             });
+    });
+
+    // Portfolio Section Starts
+    // =============== FILTER GALLERY ===============
+    let $galleryContainer = $('.gallery').isotope({
+        itemSelector: '.item',
+        layoutMode: 'fitRows',
+    });
+
+    $('.button-group .button').on('click', function () {
+        $('.button-group .button').removeClass('active');
+        $(this).addClass('active');
+
+        let value = $(this).attr('data-filter');
+        $galleryContainer.isotope({
+            filter: value,
+        });
+    });
+
+    // =============== MAGNIFIC POPUP WITH IFRAME ===============
+    $('.gallery').magnificPopup({
+        delegate: '.overlay a',
+        type: 'iframe',
+        gallery: {
+            enabled: false,
+        },
+        callbacks: {
+            open: function () {
+                let popupInstance = $.magnificPopup.instance;
+                let currentUrl = popupInstance.currItem.src;
+
+                // 🔗
+                let openTabBtn = $('<a href="' + currentUrl + '" target="_blank" class="mfp-open-tab">🔗</a>');
+
+                openTabBtn.on('click', function (e) {
+                    e.preventDefault();
+                    window.open(currentUrl, '_blank').focus();
+                    $.magnificPopup.close();
+                });
+
+                $('.mfp-content').append(openTabBtn);
+            },
+        },
+    });
+
+    // Portfolio Section Ends
+
+    // Testimonials Section Starts
+    $('.testimonials-container').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTime: 6000,
+        margin: 10,
+        nav: true,
+        navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
+        responsive: {
+            0: {
+                items: 1,
+                nav: false,
+            },
+            600: {
+                items: 1,
+                nav: true,
+            },
+            768: {
+                items: 2,
+            },
+        },
     });
 
     // =========== Contact Form Submission ===========
