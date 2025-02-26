@@ -25,11 +25,11 @@ Welcome to my personal portfolio website! This project showcases my skills, expe
 - Font Awesome icons
 
 ## 📸 Live Preview
-Check out my portfolio live: **[azmarif-portfolio](https://azmarif-portfolio.netlify.app/)**
+Check out my portfolio live: **[Portfolio](https://azmarif-portfolio.netlify.app/)**
 
 ## 📞 Contact Me
 Feel free to connect with me:
-- 🌐 Website: [azmarif-portfolio](https://azmarif-portfolio.netlify.app/)
+- 🌐 Website: [Portfolio](https://azmarif-portfolio.netlify.app/)
 - 📧 Email: [azmarif.dev@gmail.com](mailto:azmarif.dev@gmail.com)
 - 💼 LinkedIn: [linkedin.com/in/azmarifdev](https://linkedin.com/in/azmarifdev)
 - 🐦 Twitter: [twitter.com/azmarifdev](https://twitter.com/azmarifdev)
