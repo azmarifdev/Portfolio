@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         window.scrollTo(0, 0);
         scrollFunction(); // Call on load to set initial state
+
+        // Add fade-in effect to headings
+        setupHeadingFadeEffects();
     });
 
     // =========== Mobile Menu Toggle ===========
@@ -296,4 +299,196 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call lazy loading setup
     setupLazyLoading();
+
+    // =========== NEW FEATURE: Heading Fade-In Effects ===========
+    const setupHeadingFadeEffects = () => {
+        // Add styles for fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            .fade-in-heading {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            .fade-in-heading.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Get all section headings
+        const headings = document.querySelectorAll('h1, h2, h3, .section-title');
+
+        headings.forEach((heading) => {
+            heading.classList.add('fade-in-heading');
+        });
+
+        // Create intersection observer for headings
+        const headingObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        headingObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        // Observe each heading
+        headings.forEach((heading) => {
+            headingObserver.observe(heading);
+        });
+    };
+
+    // =========== NEW FEATURE: Scroll To Top Button ===========
+    const setupScrollToTopButton = () => {
+        // Create the scroll to top button
+        const scrollTopBtn = document.createElement('button');
+        scrollTopBtn.innerHTML = '↑';
+        scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+
+        // Style the button
+        Object.assign(scrollTopBtn.style, {
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            backgroundColor: '#05555c',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'none',
+            fontSize: '20px',
+            zIndex: '99',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+            transition: 'all 0.3s ease',
+        });
+
+        // Hover effect
+        scrollTopBtn.addEventListener('mouseover', () => {
+            scrollTopBtn.style.backgroundColor = '#044a50';
+            scrollTopBtn.style.transform = 'translateY(-3px)';
+        });
+
+        scrollTopBtn.addEventListener('mouseout', () => {
+            scrollTopBtn.style.backgroundColor = '#05555c';
+            scrollTopBtn.style.transform = 'translateY(0)';
+        });
+
+        // Show/hide based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.style.display = 'block';
+                scrollTopBtn.style.opacity = '1';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                setTimeout(() => {
+                    if (window.scrollY <= 300) {
+                        scrollTopBtn.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+
+        // Add click event
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Add to document
+        document.body.appendChild(scrollTopBtn);
+    };
+
+    // Call scroll to top button setup
+    setupScrollToTopButton();
+
+    // =========== NEW FEATURE: Scroll Progress Bar ===========
+    const setupScrollProgressBar = () => {
+        // Create progress bar element
+        const progressBar = document.createElement('div');
+
+        // Style the progress bar
+        Object.assign(progressBar.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            height: '3px',
+            backgroundColor: '#05555c',
+            width: '0%',
+            transition: 'width 0.1s',
+            zIndex: '1000',
+        });
+
+        // Add to document
+        document.body.appendChild(progressBar);
+
+        // Update progress bar width on scroll
+        window.addEventListener('scroll', () => {
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+    };
+
+    // Call scroll progress bar setup
+    setupScrollProgressBar();
+
+    // =========== NEW FEATURE: Offline Detection ===========
+    const setupOfflineDetection = () => {
+        // Add CSS for offline notification
+        const style = document.createElement('style');
+        style.textContent = `
+            .offline-notification {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 10px;
+                background-color: #F57F17;
+                color: white;
+                text-align: center;
+                font-weight: bold;
+                z-index: 10000;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+            .offline-notification.visible {
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create offline notification element
+        const offlineNotification = document.createElement('div');
+        offlineNotification.className = 'offline-notification';
+        offlineNotification.textContent = '🔌 You are currently offline. Some features may not work properly.';
+
+        // Add to document
+        document.body.appendChild(offlineNotification);
+
+        // Check online status and show/hide notification
+        const updateOnlineStatus = () => {
+            if (navigator.onLine) {
+                offlineNotification.classList.remove('visible');
+                showToast('✅ You are back online!', 'success');
+            } else {
+                offlineNotification.classList.add('visible');
+            }
+        };
+
+        // Add event listeners for online/offline events
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+
+        // Initial check
+        updateOnlineStatus();
+    };
+
+    // Call offline detection setup
+    setupOfflineDetection();
 });
