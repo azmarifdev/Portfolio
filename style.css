@@ -462,7 +462,7 @@ button.contact-btn {
 }
 /*   *** Services Section Styling Ends   */
 
-/* ~ Skill section styling starts */
+/* *** Skill section styling starts */
 
 .skills-container {
     display: grid;
@@ -525,7 +525,7 @@ button.contact-btn {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* ~ Skill section styling ends */
+/* *** Skill section styling ends */
 
 /*   *** Resume Section Styling Starts   */
 .resume {
@@ -1036,6 +1036,9 @@ button.contact-btn {
     .portfolio .gallery .item {
         width: calc(100% / 2);
     }
+    .about .about-desc h2 {
+        padding: 10px 0px;
+    }
 
     .skills-container {
         display: grid;
@@ -1057,6 +1060,11 @@ button.contact-btn {
         border-radius: 12px;
         background: rgba(255, 255, 255, 0.1);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .skill:hover {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
     }
 }
 
@@ -1125,6 +1133,10 @@ button.contact-btn {
         margin-left: 0px;
         margin-top: 20px;
     }
+
+    .about .about-desc h2 {
+        padding: 10px 0px;
+    }
     .about-desc .about-personal-info {
         grid-template-columns: 1fr;
         grid-gap: 10px 20px;
@@ -1172,6 +1184,12 @@ button.contact-btn {
     .column-2 .form-2 .inputGroup {
         border: 1px solid #ddd;
     }
+
+    .skill:hover {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+    }
 }
 
 /*   === Screen Size 600px or Smaller  ===   */
@@ -1180,6 +1198,14 @@ button.contact-btn {
     .portfolio .gallery .item {
         width: 100%;
     }
+    .about .about-desc h2 {
+        padding: 10px 0px;
+    }
+    .skill:hover {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+    }
 }
 
 /*   === Screen Size 550px or Smaller  ===   */
@@ -1187,6 +1213,9 @@ button.contact-btn {
     /* Home Section */
     .hero .hero-image {
         right: -200px;
+    }
+    .about .about-desc h2 {
+        padding: 10px 0px;
     }
     /* Footer Section */
     .page-footer .footer-contents {
@@ -1198,12 +1227,25 @@ button.contact-btn {
     .footer-contents p {
         margin-bottom: 10px;
     }
+    .skill:hover {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+    }
 }
 
 /*   === Screen Size 350px or Smaller  ===   */
 @media (max-width: 350px) {
     button.contact-btn {
         display: none;
+    }
+    .skill:hover {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+    }
+    .about .about-desc h2 {
+        padding: 10px 0px;
     }
 }
 

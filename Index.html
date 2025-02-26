@@ -1,105 +1,67 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--  *****   Link To Custom CSS Style sheet   *****  -->
+        <!-- Meta Tags -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5" />
+        <meta name="description" content="A. Z. M. Arif - MERN stack developer with expertise in JavaScript, React, and Next.js." />
+        <meta name="keywords" content="A. Z. M. Arif, azmarif.dev, MERN stack developer, JavaScript, React, Next.js, Web Developer, Full Stack Developer" />
+        <meta name="author" content="A. Z. M. Arif" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="7 days" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="theme-color" content="#f4f7fc" />
+        <meta name="msapplication-TileColor" content="#05555c" />
+        <meta name="msapplication-TileImage" content="https://azmarif-portfolio.netlify.app/images/favicon/favicon.ico" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="A. Z. M. Arif - Web Developer" />
+        <meta property="og:description" content="MERN stack developer with expertise in JavaScript, React, and Next.js." />
+        <meta property="og:image" content="https://azmarif-portfolio.netlify.app/images/hero-img.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://azmarif-portfolio.netlify.app" />
+        <meta property="og:site_name" content="A. Z. M. Arif" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="A. Z. M. Arif - Web Developer" />
+        <meta name="twitter:description" content="MERN stack developer with expertise in JavaScript, React, and Next.js." />
+        <meta name="twitter:image" content="https://azmarif-portfolio.netlify.app/images/about-img.jpg" />
+        <meta name="twitter:image:alt" content="A. Z. M. Arif - Web Developer" />
+        <meta name="twitter:site" content="@azmarifdev" />
+        <meta name="twitter:creator" content="@azmarifdev" />
+        <meta name="twitter:url" content="https://twitter.com/azmarifdev" />
+        <meta name="twitter:domain" content="azmarif.dev" />
+
+        <!-- LinkedIn -->
+        <meta property="og:image" content="https://azmarif-portfolio.netlify.app/images/about-img.jpg" />
+        <meta property="og:image:secure_url" content="https://azmarif-portfolio.netlify.app/images/about-img.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:alt" content="A. Z. M. Arif - Web Developer" />
+
+        <!-- Pinterest -->
+        <meta name="pinterest-rich-pin" content="true" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://azmarif-portfolio.netlify.app" />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="https://azmarif-portfolio.netlify.app/images/favicon/site.webmanifest" />
+
+        <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="style.css" />
-
-        <!--  *****   Link To Font Awsome Icons   *****  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-
-        <!--   ***** Link To Magnific Popup CSS *****   -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
-
-        <!-- *** link to remix icon cdn -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
         <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
-
-        <!-- *** link to boxicons -->
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
-        <!--   ***** Links To OwlCarousel CSS *****   -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-
-        <!-- Primary Meta Tags -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5">
-<meta name="description" content="A. Z. M. Arif - MERN stack developer with expertise in JavaScript, React, and Next.js.">
-<meta name="keywords" content="A. Z. M. Arif, azmarif.dev, MERN stack developer, JavaScript, React, Next.js, Web Developer, Full Stack Developer">
-<meta name="author" content="A. Z. M. Arif">
-<meta name="robots" content="index, follow">
-<meta name="revisit-after" content="7 days">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="theme-color" content="#f4f7fc">
-<meta name="msapplication-TileColor" content="#05555c">
-<meta name="msapplication-TileImage" content="https://azmarif-portfolio.netlify.app/images/favicon/favicon.ico">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="A. Z. M. Arif - Web Developer">
-<meta property="og:description" content="MERN stack developer with expertise in JavaScript, React, and Next.js.">
-<meta property="og:image" content="https://azmarif-portfolio.netlify.app/images/hero-img.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:url" content="https://azmarif-portfolio.netlify.app">
-<meta property="og:site_name" content="A. Z. M. Arif">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A. Z. M. Arif - Web Developer">
-<meta name="twitter:description" content="MERN stack developer with expertise in JavaScript, React, and Next.js.">
-<meta name="twitter:image" content="https://azmarif-portfolio.netlify.app/images/about-img.jpg">
-<meta name="twitter:image:alt" content="A. Z. M. Arif - Web Developer">
-<meta name="twitter:site" content="@azmarifdev">
-<meta name="twitter:creator" content="@azmarifdev">
-<meta name="twitter:url" content="https://twitter.com/azmarifdev">
-<meta name="twitter:domain" content="azmarif.dev">
-
-<!-- LinkedIn -->
-<meta property="og:image" content="https://azmarif-portfolio.netlify.app/images/about-img.jpg">
-<meta property="og:image:secure_url" content="https://azmarif-portfolio.netlify.app/images/about-img.jpg">
-<meta property="og:image:type" content="image/jpg">
-<meta property="og:image:alt" content="A. Z. M. Arif - Web Developer">
-
-<!-- Pinterest -->
-<meta name="pinterest-rich-pin" content="true">
-
-<!-- Google Site Verification -->
-<!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE"> -->
-
-<!-- Bing Site Verification -->
-<!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE"> -->
-
-<!-- Yandex Site Verification -->
-<!-- <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE"> -->
-
-<!-- Canonical URL -->
-<link rel="canonical" href="https://azmarif-portfolio.netlify.app">
-
-<!-- Favicon -->
-<!-- Standard Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.ico">
-
-<!-- Apple Touch Icon (For iOS Devices) -->
-<link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
-
-<!-- Android & Windows Pinned Tab Icon -->
-<meta name="theme-color" content="#0AC2CE">
-<meta name="msapplication-TileColor" content="#0AC2CE">
-<meta name="msapplication-TileImage" content="/images/favicon/favicon.ico">
-
-
-<!-- Manifest for PWA -->
-<link rel="manifest" href="https://azmarif-portfolio.netlify.app/images/favicon/site.webmanifest">
-
-        <!--   *** Link To EmailJS script file ***   -->
-
+        <!-- Scripts -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
         <script type="text/javascript">
             (function () {
@@ -110,7 +72,6 @@
         </script>
 
         <title>A. Z. M. Arif - Personal Website - MERN Stack Developer</title>
-        
     </head>
     <body>
         <!--   *** Website Container Starts ***   -->
@@ -120,7 +81,7 @@
                 <!--   === Navbar Starts ===   -->
                 <nav class="navbar">
                     <div class="logo">
-                        <img class="lazy-image" data-src="images/logo.png" />
+                        <img src="images/logo.png" />
                     </div>
 
                     <ul class="nav-links">
@@ -157,7 +118,7 @@
                     </div>
 
                     <div class="hero-image">
-                        <img class="lazy-image" data-src="images/hero-img.png" />
+                        <img src="images/hero-img.png" />
                     </div>
                 </div>
                 <!--   === Hero Ends ===   -->
@@ -196,7 +157,7 @@
             <section class="about" id="about">
                 <!--   === About Image Starts ===   -->
                 <div class="about-image">
-                    <img class="lazy-image" data-src="images/about-img.jpg" />
+                    <img src="images/about-img.jpg" />
                     <div class="social-media">
                         <a href="https://facebook.com/azmarifdev" target="_blank">
                             <i class="fa-brands fa-facebook-f"></i>
@@ -221,8 +182,7 @@
                 <div class="about-desc">
                     <h3>About Me</h3>
                     <h2>Professional Web Developer having 2+ years of experience</h2>
-                    <p>
-                        I am <b>A. Z. M. Arif</b>, a <b>Junior Full Stack Web Developer</b> passionate about building <b>high-quality</b>, <b>error-free</b>, and <b>performance-driven</b> websites. With a strong focus on <b>100% client satisfaction</b>, I thrive on solving complex problems and developing innovative web solutions that address <b>real-world challenges</b>. As <b>azmarifdev</b> across all platforms, I am always eager to explore new technologies, share knowledge, and push the boundaries of web development.
+                    <p>, <b>error-free</b>, and <b>performance-driven</b> websites. With a strong focus on <b>100% client satisfaction</b>, I thrive on solving complex problems and developing innovative web solutions that address <b>real-world challenges</b>. As <b>azmarifdev</b> across all platforms, I am always eager to explore new technologies, share knowledge, and push the boundaries of web development.
                     </p>
                     <br />
                     <p>
@@ -653,7 +613,7 @@
                         </main>
                         <div class="profile">
                             <div class="profile-image">
-                                <img class="lazy-image" data-src="images/profile2.jpg" />
+                                <img src="images/profile2.jpg" />
                             </div>
                             <div class="profile-desc">
                                 <span>Md Abdullah</span>
@@ -685,7 +645,7 @@
                         </main>
                         <div class="profile">
                             <div class="profile-image">
-                                <img class="lazy-image" data-src="images/profile3.jpg" />
+                                <img src="images/profile3.jpg" />
                             </div>
                             <div class="profile-desc">
                                 <span>Kaiyum Islam</span>
@@ -717,7 +677,7 @@
                         </main>
                         <div class="profile">
                             <div class="profile-image">
-                                <img class="lazy-image" data-src="images/profile4.jpg" />
+                                <img src="images/profile4.jpg" />
                             </div>
                             <div class="profile-desc">
                                 <span>Shariar Mozumdar</span>
@@ -749,7 +709,7 @@
                         </main>
                         <div class="profile">
                             <div class="profile-image">
-                                <img class="lazy-image" data-src="images/profile1.jpg" />
+                                <img src="images/profile1.jpg" />
                             </div>
                             <div class="profile-desc">
                                 <span>Ripash Sorkar</span>
@@ -781,7 +741,7 @@
                         </main>
                         <div class="profile">
                             <div class="profile-image">
-                                <img class="lazy-image" data-src="images/profile6.jpg" />
+                                <img src="images/profile6.jpg" />
                             </div>
                             <div class="profile-desc">
                                 <span>Afnan Ahmed</span>
@@ -813,7 +773,7 @@
                         </main>
                         <div class="profile">
                             <div class="profile-image">
-                                <img class="lazy-image" data-src="images/profile5.jpg" />
+                                <img src="images/profile5.jpg" />
                             </div>
                             <div class="profile-desc">
                                 <span>Abid Hasan</span>
