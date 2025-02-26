@@ -346,6 +346,10 @@ button.contact-btn {
     font-size: 15px;
     color: var(--text-clr);
 }
+.about .about-desc b {
+    font-size: 15px;
+    color: var(--links-clr);
+}
 .about-desc .about-personal-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
