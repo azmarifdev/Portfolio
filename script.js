@@ -1,199 +1,270 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     // Enable smooth scrolling globally
     document.documentElement.style.scrollBehavior = 'smooth';
 
     // =============== PAGE LOAD ===============
-    window.onload = function () {
+    window.addEventListener('load', () => {
         window.scrollTo(0, 0);
-    };
+        scrollFunction(); // Call on load to set initial state
+    });
 
     // =========== Mobile Menu Toggle ===========
     const menuBtn = document.querySelector('.menu-btn');
     const menu = document.querySelector('.nav-links');
     const menuLinks = document.querySelectorAll('.nav-links li a');
 
-    menuBtn.addEventListener('click', () => {
+    menuBtn?.addEventListener('click', () => {
         menuBtn.classList.toggle('active');
-        menu.classList.toggle('active');
+        menu?.classList.toggle('active');
     });
 
     menuLinks.forEach((link) => {
         link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            menu.classList.remove('active');
+            menuBtn?.classList.remove('active');
+            menu?.classList.remove('active');
         });
     });
 
     // =========== Home Section Scroll Effect ===========
     const homeSection = document.querySelector('.home');
     const scrollFunction = () => {
-        homeSection.classList.toggle('active', window.scrollY > 60);
+        homeSection?.classList.toggle('active', window.scrollY > 60);
     };
 
     window.addEventListener('scroll', scrollFunction);
-    window.addEventListener('load', scrollFunction);
 
     // =========== CV Download ===========
-    document.getElementById('downloadCV').addEventListener('click', function () {
+    const downloadBtn = document.getElementById('downloadCV');
+    downloadBtn?.addEventListener('click', function () {
         const pdfUrl = './assets/azmarifCV.pdf';
+
         fetch(pdfUrl)
             .then((response) => response.blob())
             .then((blob) => {
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
                 link.download = "A. Z. M. Arif's CV.pdf";
-                document.body.appendChild(link);
                 link.click();
-                document.body.removeChild(link);
-            });
+                URL.revokeObjectURL(link.href); // Free up memory
+            })
+            .catch((err) => console.error('Download failed:', err));
     });
 
     // Portfolio Section Starts
     // =============== FILTER GALLERY ===============
-    let $galleryContainer = $('.gallery').isotope({
-        itemSelector: '.item',
-        layoutMode: 'fitRows',
-    });
+    const setupGallery = () => {
+        const $gallery = $('.gallery');
+        if (!$gallery.length) return;
 
-    $('.button-group .button').on('click', function () {
-        $('.button-group .button').removeClass('active');
-        $(this).addClass('active');
+        const imgLoad = imagesLoaded($gallery);
 
-        let value = $(this).attr('data-filter');
-        $galleryContainer.isotope({
-            filter: value,
-        });
-    });
+        imgLoad.on('always', function () {
+            const $galleryContainer = $gallery.isotope({
+                itemSelector: '.item',
+                layoutMode: 'fitRows',
+            });
 
-    // =============== MAGNIFIC POPUP WITH IFRAME ===============
-    $('.gallery').magnificPopup({
-        delegate: '.overlay a',
-        type: 'iframe',
-        gallery: {
-            enabled: false,
-        },
-        callbacks: {
-            open: function () {
-                let popupInstance = $.magnificPopup.instance;
-                let currentUrl = popupInstance.currItem.src;
-
-                // 🔗
-                let openTabBtn = $('<a href="' + currentUrl + '" target="_blank" class="mfp-open-tab">🔗</a>');
-
-                openTabBtn.on('click', function (e) {
-                    e.preventDefault();
-                    window.open(currentUrl, '_blank').focus();
-                    $.magnificPopup.close();
+            $('.button-group .button').on('click', function () {
+                $('.button-group .button').removeClass('active');
+                $(this).addClass('active');
+                const value = $(this).attr('data-filter');
+                $galleryContainer.isotope({
+                    filter: value,
                 });
+            });
 
-                $('.mfp-content').append(openTabBtn);
+            // Delayed layout refresh
+            setTimeout(() => $galleryContainer.isotope('layout'), 1000);
+        });
+
+        // =============== MAGNIFIC POPUP WITH IFRAME ===============
+        $gallery.magnificPopup({
+            delegate: '.overlay a',
+            type: 'iframe',
+            gallery: {
+                enabled: false,
             },
-        },
-    });
+            callbacks: {
+                open: function () {
+                    const popupInstance = $.magnificPopup.instance;
+                    const currentUrl = popupInstance.currItem.src;
 
-    // Portfolio Section Ends
+                    // Create link button
+                    const openTabBtn = $(`<a href="${currentUrl}" target="_blank" class="mfp-open-tab">🔗</a>`);
+
+                    openTabBtn.on('click', function (e) {
+                        e.preventDefault();
+                        window.open(currentUrl, '_blank').focus();
+                        $.magnificPopup.close();
+                    });
+
+                    $('.mfp-content').append(openTabBtn);
+                },
+            },
+        });
+    };
+
+    // Call gallery setup
+    setupGallery();
 
     // Testimonials Section Starts
-    $('.testimonials-container').owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayTime: 6000,
-        margin: 10,
-        nav: true,
-        navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
-        responsive: {
-            0: {
-                items: 1,
-                nav: false,
+    const setupTestimonials = () => {
+        const $testimonials = $('.testimonials-container');
+        if (!$testimonials.length) return;
+
+        $testimonials.owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 6000, // Fixed the property name (autoplayTime -> autoplayTimeout)
+            margin: 10,
+            nav: true,
+            navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false,
+                },
+                600: {
+                    items: 1,
+                    nav: true,
+                },
+                768: {
+                    items: 2,
+                },
             },
-            600: {
-                items: 1,
-                nav: true,
-            },
-            768: {
-                items: 2,
-            },
-        },
-    });
+        });
+    };
+
+    // Call testimonials setup
+    setupTestimonials();
 
     // =========== Contact Form Submission ===========
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+    const setupContactForm = () => {
+        const contactForm = document.getElementById('contactForm');
+        if (!contactForm) return;
 
-        // Get form values
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
+        // Add CSS for the spinner
+        const style = document.createElement('style');
+        style.textContent = `
+            .spinner {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 3px solid rgba(255,255,255,.3);
+                border-radius: 50%;
+                border-top-color: #fff;
+                animation: spin 1s ease-in-out infinite;
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+            .btn-disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
+        `;
+        document.head.appendChild(style);
 
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const message = messageInput.value.trim();
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        // Email validation regex
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // Get form values
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            const submitButton = contactForm.querySelector('button[type="submit"]');
 
-        if (!name || !email || !message) {
-            showToast('⚠️ Complete all the fields!', 'error');
-            return;
-        }
+            if (!nameInput || !emailInput || !messageInput || !submitButton) return;
 
-        if (!emailPattern.test(email)) {
-            showToast('❌ অনুগ্রহ করে একটি বৈধ ইমেইল ঠিকানা দিন!', 'error');
-            return;
-        }
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const message = messageInput.value.trim();
 
-        // Use EmailJS to send email
-        emailjs
-            .send('portfolio-service', 'portfolio-template', {
-                from_name: name,
-                from_email: email,
-                message: message,
-            })
-            .then(
-                function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
+            // Email validation regex
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-                    // Show success toast
-                    showToast('✅ Your email has been sent, get the answer soon!', 'success');
+            if (!name || !email || !message) {
+                showToast('⚠️ Complete all the fields!', 'error');
+                return;
+            }
 
-                    // Clear form fields manually
-                    nameInput.value = '';
-                    emailInput.value = '';
-                    messageInput.value = '';
+            if (!emailPattern.test(email)) {
+                showToast('❌ Please give a valid email address!', 'error');
+                return;
+            }
 
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                },
-                function (error) {
-                    console.log('FAILED...', error);
+            // Save original button text
+            const originalButtonText = submitButton.innerHTML;
 
-                    // Show error toast
-                    showToast('❌ Sorry, the email could not be sent. Try again later!', 'error');
-                },
-            );
-    });
+            // Add spinner and disable button
+            submitButton.classList.add('btn-disabled');
+            submitButton.disabled = true;
+
+            // Create spinner element
+            const spinner = document.createElement('span');
+            spinner.className = 'spinner';
+
+            // Update button text and add spinner
+            submitButton.innerHTML = 'Sending... ';
+            submitButton.appendChild(spinner);
+
+            // Use EmailJS to send email
+            emailjs
+                .send('portfolio-service', 'portfolio-template', {
+                    from_name: name,
+                    from_email: email,
+                    message: message,
+                })
+                .then(
+                    function (response) {
+                        // Show success toast
+                        showToast('✅ Your email has been sent, get the answer soon!', 'success');
+
+                        // Clear form fields
+                        nameInput.value = '';
+                        emailInput.value = '';
+                        messageInput.value = '';
+
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    },
+                    function (error) {
+                        console.error('Email sending failed:', error);
+                        showToast('❌ Sorry, the email could not be sent. Try again later!', 'error');
+                    },
+                )
+                .finally(() => {
+                    // Restore button to original state regardless of success/failure
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('btn-disabled');
+                });
+        });
+    };
+
+    // Call contact form setup
+    setupContactForm();
 
     // Toast Notification Function
     function showToast(message, type) {
         const toast = document.createElement('div');
         toast.textContent = message;
-        toast.style.position = 'fixed';
-        toast.style.bottom = '20px';
-        toast.style.right = '20px';
-        toast.style.padding = '12px 16px';
-        toast.style.borderRadius = '8px';
-        toast.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-        toast.style.color = 'white';
-        toast.style.fontSize = '14px';
-        toast.style.opacity = '1';
-        toast.style.transition = 'opacity 0.5s ease-in-out';
 
-        // Toast color based on type
-        if (type === 'success') {
-            toast.style.background = '#05555c';
-        } else if (type === 'error') {
-            toast.style.background = '#F57F17';
-        }
+        Object.assign(toast.style, {
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            color: 'white',
+            fontSize: '14px',
+            opacity: '1',
+            transition: 'opacity 0.5s ease-in-out',
+            background: type === 'success' ? '#05555c' : '#F57F17',
+        });
 
         document.body.appendChild(toast);
 
@@ -203,4 +274,26 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => toast.remove(), 500);
         }, 3000);
     }
+
+    // =========== Lazy Loading Images ===========
+    const setupLazyLoading = () => {
+        const lazyImages = document.querySelectorAll('img.lazy-image');
+        if (!lazyImages.length) return;
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy-image');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach((img) => imageObserver.observe(img));
+    };
+
+    // Call lazy loading setup
+    setupLazyLoading();
 });

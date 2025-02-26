@@ -12,6 +12,12 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
 
+        <!-- *** link to remix icon cdn -->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
+
+        <!-- *** link to boxicons -->
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+
         <!--   ***** Links To OwlCarousel CSS *****   -->
         <link
             rel="stylesheet"
@@ -43,7 +49,7 @@
                 <!--   === Navbar Starts ===   -->
                 <nav class="navbar">
                     <div class="logo">
-                        <img src="images/logo.png" />
+                        <img class="lazy-image" data-src="images/logo.png" />
                     </div>
 
                     <ul class="nav-links">
@@ -80,7 +86,7 @@
                     </div>
 
                     <div class="hero-image">
-                        <img src="images/hero-img.png" />
+                        <img class="lazy-image" data-src="images/hero-img.png" />
                     </div>
                 </div>
                 <!--   === Hero Ends ===   -->
@@ -233,15 +239,15 @@
                         <h3>Front End</h3>
                         <div class="skill-icons">
                             <div class="skill">
-                                <i class="fab fa-js"></i>
+                                <i class="ri-javascript-fill"></i>
                                 JavaScript
                             </div>
                             <div class="skill">
-                                <i class="fab fa-react"></i>
+                                <i class="ri-reactjs-line"></i>
                                 React.js
                             </div>
                             <div class="skill">
-                                <i class="fab fa-face-dizzy"></i>
+                                <i class="bx bxl-redux"></i>
                                 Redux
                             </div>
                             <div class="skill">
@@ -249,7 +255,7 @@
                                 Sass
                             </div>
                             <div class="skill">
-                                <i class="fab fa-css3-alt"></i>
+                                <i class="bx bxl-tailwind-css"></i>
                                 Tailwind
                             </div>
                             <div class="skill">
@@ -270,19 +276,19 @@
                                 Express.js
                             </div>
                             <div class="skill">
-                                <i class="fas fa-face-angry"></i>
+                                <i class="bx bxl-mongodb"></i>
                                 MongoDB
                             </div>
                             <div class="skill">
-                                <i class="fas fa-database"></i>
-                                MongoDB
+                                <i class="fa-brands fa-rocketchat"></i>
+                                WebSockets
                             </div>
                             <div class="skill">
-                                <i class="fas fa-cloud"></i>
+                                <i class="bx bxl-firebase"></i>
                                 Firebase
                             </div>
                             <div class="skill">
-                                <i class="fas fa-face-flushed"></i>
+                                <i class="bx bxs-cog"></i>
                                 Rest API
                             </div>
                         </div>
@@ -295,7 +301,7 @@
                                 Git
                             </div>
                             <div class="skill">
-                                <i class="fas fa-cloud-upload-alt"></i>
+                                <i class="ri-vercel-fill"></i>
                                 Vercel
                             </div>
                             <div class="skill">
@@ -307,12 +313,12 @@
                                 Linux
                             </div>
                             <div class="skill">
-                                <i class="fab fa-netlify"></i>
+                                <i class="bx bxl-netlify"></i>
                                 Netlify
                             </div>
                             <div class="skill">
-                                <i class="fab fa-framer-motion"></i>
-                                Framer Motion
+                                <i class="bx bxl-figma"></i>
+                                Figma
                             </div>
                         </div>
                     </div>
@@ -824,7 +830,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
         <!--   *** Link To Isotope ***   -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+        <!-- imagesLoaded -->
+        <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+        <!-- Isotope -->
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
         <!--   *** Link To Magnific Popup ***   -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
