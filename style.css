@@ -523,11 +523,11 @@ button.contact-btn {
     margin-bottom: 8px;
 }
 
-.skill:hover {
+/* .skill:hover {
     transform: scale(1.1);
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
+} */
 
 /* *** Skill section styling ends */
 
@@ -1065,11 +1065,11 @@ button.contact-btn {
         background: rgba(255, 255, 255, 0.1);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    .skill:hover {
+/*     .skill:hover {
         transform: scale(1);
         background: rgba(255, 255, 255, 0);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-    }
+    } */
 }
 
 /*   === Screen Size 768px or Smaller  ===   */
@@ -1189,11 +1189,11 @@ button.contact-btn {
         border: 1px solid #ddd;
     }
 
-    .skill:hover {
+/*     .skill:hover {
         transform: scale(1);
         background: rgba(255, 255, 255, 0);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-    }
+    } */
 }
 
 /*   === Screen Size 600px or Smaller  ===   */
@@ -1205,11 +1205,11 @@ button.contact-btn {
     .about .about-desc h2 {
         padding: 10px 0px;
     }
-    .skill:hover {
+/*     .skill:hover {
         transform: scale(1);
         background: rgba(255, 255, 255, 0);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-    }
+    } */
 }
 
 /*   === Screen Size 550px or Smaller  ===   */
@@ -1231,11 +1231,11 @@ button.contact-btn {
     .footer-contents p {
         margin-bottom: 10px;
     }
-    .skill:hover {
+ /*    .skill:hover {
         transform: scale(1);
         background: rgba(255, 255, 255, 0);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-    }
+    } */
 }
 
 /*   === Screen Size 350px or Smaller  ===   */
@@ -1243,11 +1243,11 @@ button.contact-btn {
     button.contact-btn {
         display: none;
     }
-    .skill:hover {
+/*     .skill:hover {
         transform: scale(1);
         background: rgba(255, 255, 255, 0);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-    }
+    } */
     .about .about-desc h2 {
         padding: 10px 0px;
     }
