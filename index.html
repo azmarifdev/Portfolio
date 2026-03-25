@@ -109,9 +109,11 @@
                 }
             }
         </script>
-
     </head>
     <body>
+        <!-- Scroll Progress Bar -->
+        <div class="scroll-progress"></div>
+
         <!--   *** Website Container Starts ***   -->
         <div class="Website-container">
             <!--   *** Home Section Starts ***   -->
@@ -126,6 +128,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#courses">Courses</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#testimonials">Reviews</a></li>
                     </ul>
@@ -144,7 +147,15 @@
 
                 <!--   === Hero Starts ===   -->
                 <div class="hero">
+                    <div class="hero-orbit hero-orbit-one"></div>
+                    <div class="hero-orbit hero-orbit-two"></div>
+                    <div class="hero-grid-glow"></div>
+
                     <div class="hero-text">
+                        <div class="hero-kicker">
+                            <span class="hero-status-dot"></span>
+                            <span>Available for web projects</span>
+                        </div>
                         <h3>Hey, There</h3>
                         <h1>I am A. Z. M. Arif</h1>
                         <h2>Web Developer & Freelancer</h2>
@@ -152,7 +163,28 @@
                             Love to learn new skills. Full and fresh hand code is my power. Client satisfaction is my first
                             priority.
                         </p>
-                        <button class="btn download-btn" id="downloadCV">Download CV</button>
+                        <div class="hero-actions">
+                            <button class="btn download-btn" id="downloadCV">Download CV</button>
+                            <a href="#portfolio" class="hero-link-btn">See Projects</a>
+                        </div>
+
+                        <div class="hero-mini-cards">
+                            <div class="hero-mini-card" data-depth="12">
+                                <span class="mini-card-label">Focused On</span>
+                                <strong>React, Node.js & MongoDB</strong>
+                            </div>
+                            <div class="hero-mini-card" data-depth="18">
+                                <span class="mini-card-label">Workflow</span>
+                                <strong>Clean UI, Fast Delivery</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-floating-tags">
+                        <div class="hero-tag" data-depth="10">JavaScript</div>
+                        <div class="hero-tag" data-depth="18">React.js</div>
+                        <div class="hero-tag" data-depth="14">Node.js</div>
+                        <div class="hero-tag" data-depth="20">MongoDB</div>
                     </div>
 
                     <div class="hero-image">
@@ -347,109 +379,372 @@
             <section class="skills reusable" id="skills">
                 <!--   === Headings Text Starts ===   -->
                 <header class="headings">
-                    <h3>Skills</h3>
-                    <h1>My Technical Skills</h1>
+                    <h3>Expertise</h3>
+                    <h1>Technical Excellence</h1>
                     <p>
-                        I have a diverse skill set that enables me to create high-quality web applications with a focus on
-                        performance, usability, and scalability.
+                        Skills aligned with my resume, covering the frontend, backend, databases, DevOps, and tools I use to
+                        build practical full-stack products.
                     </p>
                 </header>
                 <!--   === Headings Text Ends ===   -->
 
-                <!--   === Skills Row Starts ===   -->
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h3>Front End</h3>
-                        <div class="skill-icons">
-                            <div class="skill">
-                                <i class="ri-javascript-fill"></i>
-                                JavaScript
+                <!--   === Professional Skills Grid Starts ===   -->
+                <div class="professional-skills-container">
+                    <div class="skill-domain">
+                        <div class="domain-header">
+                            <div class="domain-icon">
+                                <i class="fas fa-code"></i>
                             </div>
-                            <div class="skill">
-                                <i class="ri-reactjs-line"></i>
-                                React.js
+                            <div class="domain-info">
+                                <h3>Front-End</h3>
+                                <p>Resume-based UI and styling technologies</p>
                             </div>
-                            <div class="skill">
-                                <i class="bx bxl-redux"></i>
-                                Redux
+                            <div class="domain-score">95%</div>
+                        </div>
+                        <div class="domain-progress">
+                            <div class="progress-line frontend-progress" data-percent="95"></div>
+                        </div>
+                        <div class="tech-stack-grid">
+                            <div class="tech-badge expert">
+                                <i class="fab fa-js-square"></i>
+                                <span>JavaScript</span>
+                                <div class="badge-level">Expert</div>
                             </div>
-                            <div class="skill">
+                            <div class="tech-badge advanced">
+                                <i class="fas fa-code"></i>
+                                <span>TypeScript</span>
+                                <div class="badge-level">Advanced</div>
+                            </div>
+                            <div class="tech-badge expert">
+                                <i class="fab fa-react"></i>
+                                <span>React.js</span>
+                                <div class="badge-level">Expert</div>
+                            </div>
+                            <div class="tech-badge advanced">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Redux</span>
+                                <div class="badge-level">Advanced</div>
+                            </div>
+                            <div class="tech-badge advanced">
                                 <i class="fab fa-sass"></i>
-                                Sass
+                                <span>Sass</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
-                            <div class="skill">
-                                <i class="bx bxl-tailwind-css"></i>
-                                Tailwind
+                            <div class="tech-badge advanced">
+                                <i class="fab fa-bootstrap"></i>
+                                <span>Bootstrap</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
-                            <div class="skill">
-                                <i class="fas fa-palette"></i>
-                                Material UI
+                            <div class="tech-badge advanced">
+                                <i class="fas fa-wind"></i>
+                                <span>Tailwind</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h3>Back End</h3>
-                        <div class="skill-icons">
-                            <div class="skill">
-                                <i class="fab fa-node-js"></i>
-                                Node.js
-                            </div>
-                            <div class="skill">
+
+                    <div class="skill-domain">
+                        <div class="domain-header">
+                            <div class="domain-icon">
                                 <i class="fas fa-server"></i>
-                                Express.js
                             </div>
-                            <div class="skill">
-                                <i class="bx bxl-mongodb"></i>
-                                MongoDB
+                            <div class="domain-info">
+                                <h3>Back-End</h3>
+                                <p>Server-side development and API skills from the resume</p>
                             </div>
-                            <div class="skill">
-                                <i class="fa-brands fa-rocketchat"></i>
-                                WebSockets
+                            <div class="domain-score">92%</div>
+                        </div>
+                        <div class="domain-progress">
+                            <div class="progress-line backend-progress" data-percent="92"></div>
+                        </div>
+                        <div class="tech-stack-grid">
+                            <div class="tech-badge expert">
+                                <i class="fab fa-node-js"></i>
+                                <span>Node.js</span>
+                                <div class="badge-level">Expert</div>
                             </div>
-                            <div class="skill">
-                                <i class="bx bxl-firebase"></i>
-                                Firebase
+                            <div class="tech-badge expert">
+                                <i class="fas fa-code"></i>
+                                <span>Express.js</span>
+                                <div class="badge-level">Expert</div>
                             </div>
-                            <div class="skill">
-                                <i class="bx bxs-cog"></i>
-                                Rest API
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-code-branch"></i>
+                                <span>REST API</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge advanced">
+                                <i class="fas fa-fire"></i>
+                                <span>Firebase</span>
+                                <div class="badge-level">Advanced</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-circle-nodes"></i>
+                                <span>Mongoose</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-plug-circle-bolt"></i>
+                                <span>Socket.io</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-database"></i>
+                                <span>Prisma</span>
+                                <div class="badge-level">Familiar</div>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h3>Tools</h3>
-                        <div class="skill-icons">
-                            <div class="skill">
+
+                    <div class="skill-domain">
+                        <div class="domain-header">
+                            <div class="domain-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="domain-info">
+                                <h3>Database</h3>
+                                <p>Data modeling and storage tools listed in the resume</p>
+                            </div>
+                            <div class="domain-score">88%</div>
+                        </div>
+                        <div class="domain-progress">
+                            <div class="progress-line database-progress" data-percent="88"></div>
+                        </div>
+                        <div class="tech-stack-grid">
+                            <div class="tech-badge basic">
+                                <i class="fas fa-leaf"></i>
+                                <span>MongoDB</span>
+                                <div class="badge-level">Basic</div>
+                            </div>
+                            <div class="tech-badge basic">
+                                <i class="fas fa-memory"></i>
+                                <span>Redis</span>
+                                <div class="badge-level">Basic</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-database"></i>
+                                <span>PostgreSQL</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-database"></i>
+                                <span>MySQL</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-fire"></i>
+                                <span>Firebase</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-domain">
+                        <div class="domain-header">
+                            <div class="domain-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="domain-info">
+                                <h3>DevOps and Tools</h3>
+                                <p>Development, hosting, and CMS tools from the resume</p>
+                            </div>
+                            <div class="domain-score">90%</div>
+                        </div>
+                        <div class="domain-progress">
+                            <div class="progress-line tools-progress" data-percent="90"></div>
+                        </div>
+                        <div class="tech-stack-grid">
+                            <div class="tech-badge expert">
                                 <i class="fab fa-git-alt"></i>
-                                Git
+                                <span>Git</span>
+                                <div class="badge-level">Expert</div>
                             </div>
-                            <div class="skill">
-                                <i class="ri-vercel-fill"></i>
-                                Vercel
+                            <div class="tech-badge advanced">
+                                <i class="fab fa-figma"></i>
+                                <span>Figma</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
-                            <div class="skill">
+                            <div class="tech-badge advanced">
+                                <i class="fas fa-bolt"></i>
+                                <span>Vercel</span>
+                                <div class="badge-level">Advanced</div>
+                            </div>
+                            <div class="tech-badge advanced">
+                                <i class="fas fa-globe"></i>
+                                <span>Netlify</span>
+                                <div class="badge-level">Advanced</div>
+                            </div>
+                            <div class="tech-badge advanced">
                                 <i class="fab fa-docker"></i>
-                                Docker
+                                <span>Docker</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
-                            <div class="skill">
+                            <div class="tech-badge advanced">
                                 <i class="fab fa-linux"></i>
-                                Linux
+                                <span>Linux</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
-                            <div class="skill">
-                                <i class="bx bxl-netlify"></i>
-                                Netlify
+                            <div class="tech-badge advanced">
+                                <i class="fab fa-wordpress"></i>
+                                <span>Wordpress</span>
+                                <div class="badge-level">Advanced</div>
                             </div>
-                            <div class="skill">
-                                <i class="bx bxl-figma"></i>
-                                Figma
+                        </div>
+                    </div>
+
+                    <div class="skill-domain">
+                        <div class="domain-header">
+                            <div class="domain-icon">
+                                <i class="fas fa-compass"></i>
+                            </div>
+                            <div class="domain-info">
+                                <h3>Exploring</h3>
+                                <p>Technologies I am actively exploring to expand my engineering range</p>
+                            </div>
+                            <div class="domain-score">70%</div>
+                        </div>
+                        <div class="domain-progress">
+                            <div class="progress-line exploring-progress" data-percent="70"></div>
+                        </div>
+                        <div class="tech-stack-grid">
+                            <div class="tech-badge familiar">
+                                <i class="fab fa-aws"></i>
+                                <span>AWS</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-cloud"></i>
+                                <span>Azure</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-circle-nodes"></i>
+                                <span>GraphQL</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-desktop"></i>
+                                <span>Electron</span>
+                                <div class="badge-level">Familiar</div>
+                            </div>
+                            <div class="tech-badge familiar">
+                                <i class="fas fa-mobile-screen-button"></i>
+                                <span>Kotlin</span>
+                                <div class="badge-level">Familiar</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--   === Skills Row Ends ===   -->
+                <!--   === Professional Skills Grid Ends ===   -->
             </section>
 
             <!--*** Skill section ends -->
+
+            <section class="courses reusable" id="courses">
+                <header class="headings">
+                    <h3>Learning</h3>
+                    <h1>Courses</h1>
+                    <p>
+                        Completed courses from my resume, including the platform and the year each learning milestone was
+                        completed.
+                    </p>
+                </header>
+
+                <div class="courses-grid">
+                    <article class="course-card">
+                        <div class="course-meta">
+                            <span class="course-platform">Interactive Cares</span>
+                            <span class="course-date">Ongoing</span>
+                        </div>
+                        <h3>DevOps</h3>
+                        <p>
+                            Currently learning DevOps concepts, deployment workflow, server environment handling, and
+                            modern production practices.
+                        </p>
+                        <span class="btn course-status-btn">In Progress</span>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-meta">
+                            <span class="course-platform">Learn with Sumit (LWS)</span>
+                            <span class="course-date">Completed in 2024</span>
+                        </div>
+                        <h3>Reactive Accelerator - LWS</h3>
+                        <p>
+                            Focused on Next.js concepts, modern React workflow, and building faster frontend applications
+                            with production-ready structure.
+                        </p>
+                        <span class="btn course-status-btn">Unavailable</span>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-meta">
+                            <span class="course-platform">Learn with Sumit (LWS)</span>
+                            <span class="course-date">Completed in 2023</span>
+                        </div>
+                        <h3>Think in a Redux way - LWS</h3>
+                        <p>
+                            Focused on Redux fundamentals, state management patterns, and building more structured React
+                            application flows.
+                        </p>
+                        <span class="btn course-status-btn">Unavailable</span>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-meta">
+                            <span class="course-platform">JS Bangladesh</span>
+                            <span class="course-date">Completed in 2023</span>
+                        </div>
+                        <h3>Data Structures & Algorithms</h3>
+                        <p>
+                            Learned core data structures and algorithms to improve problem-solving ability, coding logic,
+                            and interview-focused thinking.
+                        </p>
+                        <button
+                            type="button"
+                            class="btn course-view-btn"
+                            data-certificate-url="https://drive.google.com/file/d/1s1zGTV-WILzNg1AhkxQytanHB70ChSi4/preview">
+                            View Certificate
+                        </button>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-meta">
+                            <span class="course-platform">Programming Hero</span>
+                            <span class="course-date">Completed in 2022</span>
+                        </div>
+                        <h3>MERN Stack Development</h3>
+                        <p>
+                            Covered the MERN stack workflow with practical full-stack project building using React, Node.js,
+                            Express.js, and MongoDB.
+                        </p>
+                        <button
+                            type="button"
+                            class="btn course-view-btn"
+                            data-certificate-url="https://drive.google.com/file/d/1s1zGTV-WILzNg1AhkxQytanHB70ChSi4/preview">
+                            View Certificate
+                        </button>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-meta">
+                            <span class="course-platform">Bongo Academy</span>
+                            <span class="course-date">Completed in 2021</span>
+                        </div>
+                        <h3>Android App Development with Java</h3>
+                        <p>
+                            Learned Android app development fundamentals with Java, including app structure, UI building,
+                            and mobile development basics.
+                        </p>
+                        <button
+                            type="button"
+                            class="btn course-view-btn"
+                            data-certificate-url="https://drive.google.com/file/d/1s1zGTV-WILzNg1AhkxQytanHB70ChSi4/preview">
+                            View Certificate
+                        </button>
+                    </article>
+                </div>
+            </section>
 
             <!--   *** Resume Section Starts ***   -->
             <section class="resume reusable" id="resume">
@@ -988,4 +1283,3 @@
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
-

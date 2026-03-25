@@ -30,11 +30,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // =========== Home Section Scroll Effect ===========
     const homeSection = document.querySelector('.home');
+    const scrollProgressBar = document.querySelector('.scroll-progress');
+
     const scrollFunction = () => {
         homeSection?.classList.toggle('active', window.scrollY > 60);
+
+        // Update scroll progress bar
+        if (scrollProgressBar) {
+            const scrollTop = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = (scrollTop / documentHeight) * 100;
+            scrollProgressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+        }
     };
 
     window.addEventListener('scroll', scrollFunction);
+
+    // =========== Hero Motion ===========
+    const setupHeroMotion = () => {
+        const hero = document.querySelector('.hero');
+        if (!hero || window.innerWidth < 992) return;
+
+        const motionItems = hero.querySelectorAll('[data-depth]');
+        const heroImage = hero.querySelector('.hero-image');
+        const heroOrbits = hero.querySelectorAll('.hero-orbit');
+
+        hero.addEventListener('mousemove', (event) => {
+            const rect = hero.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left - rect.width / 2;
+            const offsetY = event.clientY - rect.top - rect.height / 2;
+
+            motionItems.forEach((item) => {
+                const depth = Number(item.dataset.depth || 10);
+                const moveX = (offsetX / rect.width) * depth;
+                const moveY = (offsetY / rect.height) * depth;
+                item.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+
+            if (heroImage) {
+                heroImage.style.transform = `rotate(40deg) translate(${offsetX * 0.015}px, ${offsetY * 0.01}px)`;
+            }
+
+            heroOrbits.forEach((orbit, index) => {
+                const amount = index === 0 ? 10 : 16;
+                orbit.style.transform = `translate(${offsetX / amount}px, ${offsetY / amount}px)`;
+            });
+        });
+
+        hero.addEventListener('mouseleave', () => {
+            motionItems.forEach((item) => {
+                item.style.transform = '';
+            });
+
+            if (heroImage) {
+                heroImage.style.transform = 'rotate(40deg)';
+            }
+
+            heroOrbits.forEach((orbit) => {
+                orbit.style.transform = '';
+            });
+        });
+    };
+
+    setupHeroMotion();
 
     // =========== CV Download ===========
     const downloadBtn = document.getElementById('downloadCV');
@@ -54,6 +112,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Portfolio Section Starts
+    const openIframePopup = (previewUrl, openUrl, popupClass = '') => {
+        if (!previewUrl || typeof $.magnificPopup?.open !== 'function') return;
+
+        $.magnificPopup.open({
+            items: {
+                src: previewUrl,
+            },
+            type: 'iframe',
+            mainClass: popupClass,
+            callbacks: {
+                open: function () {
+                    const $content = $('.mfp-content');
+                    const existingButton = $content.find('.mfp-open-tab');
+                    if (existingButton.length) {
+                        existingButton.remove();
+                    }
+
+                    const targetUrl = openUrl || previewUrl;
+                    const openTabBtn = $(`<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="mfp-open-tab" aria-label="Open in new tab">↗</a>`);
+
+                    openTabBtn.on('click', function (e) {
+                        e.preventDefault();
+                        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+                        $.magnificPopup.close();
+                    });
+
+                    $content.append(openTabBtn);
+                },
+            },
+        });
+    };
+
     // =============== FILTER GALLERY ===============
     const setupGallery = () => {
         const $gallery = $('.gallery');
@@ -91,17 +181,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 open: function () {
                     const popupInstance = $.magnificPopup.instance;
                     const currentUrl = popupInstance.currItem.src;
+                    const $content = $('.mfp-content');
+                    const existingButton = $content.find('.mfp-open-tab');
+                    if (existingButton.length) {
+                        existingButton.remove();
+                    }
 
-                    // Create link button
-                    const openTabBtn = $(`<a href="${currentUrl}" target="_blank" class="mfp-open-tab">🔗</a>`);
+                    const openTabBtn = $(`<a href="${currentUrl}" target="_blank" rel="noopener noreferrer" class="mfp-open-tab" aria-label="Open in new tab">↗</a>`);
 
                     openTabBtn.on('click', function (e) {
                         e.preventDefault();
-                        window.open(currentUrl, '_blank').focus();
+                        window.open(currentUrl, '_blank', 'noopener,noreferrer');
                         $.magnificPopup.close();
                     });
 
-                    $('.mfp-content').append(openTabBtn);
+                    $content.append(openTabBtn);
                 },
             },
         });
@@ -109,6 +203,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call gallery setup
     setupGallery();
+
+    const setupCertificateModal = () => {
+        $(document).on('click', '.course-view-btn[data-certificate-url]', function (event) {
+            event.preventDefault();
+
+            const previewUrl = this.dataset.certificateUrl;
+            const openUrl = previewUrl ? previewUrl.replace('/preview', '/view') : '';
+
+            openIframePopup(previewUrl, openUrl, 'certificate-popup');
+        });
+    };
+
+    setupCertificateModal();
 
     // Testimonials Section Starts
     const setupTestimonials = () => {
@@ -407,37 +514,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Call scroll to top button setup
     setupScrollToTopButton();
 
-    // =========== NEW FEATURE: Scroll Progress Bar ===========
-    const setupScrollProgressBar = () => {
-        // Create progress bar element
-        const progressBar = document.createElement('div');
-
-        // Style the progress bar
-        Object.assign(progressBar.style, {
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            height: '3px',
-            backgroundColor: '#05555c',
-            width: '0%',
-            transition: 'width 0.1s',
-            zIndex: '1000',
-        });
-
-        // Add to document
-        document.body.appendChild(progressBar);
-
-        // Update progress bar width on scroll
-        window.addEventListener('scroll', () => {
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            progressBar.style.width = `${progress}%`;
-        });
-    };
-
-    // Call scroll progress bar setup
-    setupScrollProgressBar();
-
     // =========== NEW FEATURE: Offline Detection ===========
     const setupOfflineDetection = () => {
         // Add CSS for offline notification
@@ -491,4 +567,134 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call offline detection setup
     setupOfflineDetection();
+
+    // =========== Scroll Reveal Animation ===========
+    const setupScrollReveal = () => {
+        const revealElements = document.querySelectorAll('.achievement-card, .contact-info-card');
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px',
+            },
+        );
+
+        revealElements.forEach((element) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            revealObserver.observe(element);
+        });
+    };
+
+    // Call scroll reveal setup
+    setupScrollReveal();
+
+    // =========== Professional Skills Animation ===========
+    const setupProfessionalSkillsAnimation = () => {
+        const skillDomains = document.querySelectorAll('.skill-domain');
+
+        const skillsObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                        entry.target.classList.add('animate');
+
+                        // Animate the domain with delay
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+
+                        // Animate progress bar
+                        const progressBar = entry.target.querySelector('.progress-line[data-percent]');
+                        if (progressBar) {
+                            const percent = progressBar.getAttribute('data-percent');
+                            
+                            setTimeout(() => {
+                                progressBar.style.setProperty('--progress-width', `${percent}%`);
+                                progressBar.style.width = `${percent}%`;
+                                progressBar.classList.add('animate');
+                            }, (index * 200) + 400);
+                        }
+
+                        // Animate tech badges
+                        const techBadges = entry.target.querySelectorAll('.tech-badge');
+                        techBadges.forEach((badge, badgeIndex) => {
+                            setTimeout(() => {
+                                badge.style.opacity = '1';
+                                badge.style.transform = 'translateY(0) scale(1)';
+                            }, (index * 200) + 600 + (badgeIndex * 100));
+                        });
+                    }
+                });
+            },
+            {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px',
+            },
+        );
+
+        // Set initial styles for animation
+        skillDomains.forEach((domain) => {
+            domain.style.opacity = '0';
+            domain.style.transform = 'translateY(30px)';
+            domain.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            const techBadges = domain.querySelectorAll('.tech-badge');
+            techBadges.forEach((badge) => {
+                badge.style.opacity = '0';
+                badge.style.transform = 'translateY(20px) scale(0.95)';
+                badge.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            });
+        });
+
+        // Observe skill domains
+        skillDomains.forEach((domain) => {
+            skillsObserver.observe(domain);
+        });
+    };
+
+    // Call professional skills animation setup
+    setupProfessionalSkillsAnimation();
+
+    // =========== Tech Stack Hover Effects ===========
+    const setupTechStackInteractions = () => {
+        const techItems = document.querySelectorAll('.tech-item');
+
+        techItems.forEach((item) => {
+            item.addEventListener('mouseenter', () => {
+                const category = item.getAttribute('data-category');
+
+                // Highlight related items
+                techItems.forEach((otherItem) => {
+                    if (otherItem.getAttribute('data-category') === category) {
+                        otherItem.style.borderColor = 'var(--links-clr)';
+                        otherItem.style.background = 'var(--primary-light-clr)';
+                    } else {
+                        otherItem.style.opacity = '0.6';
+                    }
+                });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                techItems.forEach((otherItem) => {
+                    otherItem.style.borderColor = '';
+                    otherItem.style.background = '';
+                    otherItem.style.opacity = '';
+                });
+            });
+        });
+    };
+
+    // Call tech stack interactions setup
+    setupTechStackInteractions();
 });
