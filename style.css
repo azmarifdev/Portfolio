@@ -2170,11 +2170,7 @@ body::after {
 
 /*   === Screen Size 768px or Smaller  ===   */
 @media (max-width: 768px) {
-    .hero-status-dot {
-        display: none;
-    }
-
-    .hero-kicker span:nth-child(2) {
+    .hero-kicker {
         display: none;
     }
 
