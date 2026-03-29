@@ -1,61 +1,138 @@
-# 🚀 A. Z. M. Arif - Portfolio Website
+# A. Z. M. Arif - Portfolio Website
 
-Welcome to my personal portfolio website! This project showcases my skills, experiences, and latest projects in web development.
+Personal portfolio website of A. Z. M. Arif (azmarifdev), focused on MERN stack development, modern UI, and practical full-stack project experience.
 
-## 🌟 Features
+## Live Website
 
--   ✅ **Responsive & Modern Design** - Fully adaptable to all screen sizes.
--   ✅ **Smooth Scrolling & Animations** - Enhanced user experience.
--   ✅ **Dynamic Portfolio Gallery** - Showcasing my latest projects.
--   ✅ **Interactive Testimonials Section** - Client feedback in an engaging format.
--   ✅ **Lazy Loading for Faster Performance** - Optimized loading speed.
--   ✅ **Fully Functional Contact Form** - Integrated with EmailJS for direct messaging.
+- Website: [https://azmarif.dev/](https://azmarif.dev/)
 
-## 🛠️ Tech Stack
+## Professional Snapshot
 
-### Frontend:
+- 2+ years of web development experience
+- 10+ completed projects
+- 3+ happy clients
+- Available for freelance and web project collaboration
 
--   HTML
--   CSS
--   JavaScript
--   jQuery
+## Services
 
-### Libraries & Tools:
+- Web Design
+- Web Development
+- WordPress Development
 
--   Owl Carousel
--   Isotope
--   Magnific Popup
--   EmailJS for contact form
--   Font Awesome icons
+## Technical Skills
 
-## 📸 Live Preview
+### Front-End
 
-Check out my portfolio live: **[Portfolio](https://azmarif.dev/)**
+- JavaScript
+- TypeScript
+- React.js
+- Redux
+- Sass
+- Bootstrap
+- Tailwind CSS
 
-## 📞 Contact Me
+### Back-End
 
-Feel free to connect with me:
+- Node.js
+- Express.js
+- REST API
+- Firebase
+- Mongoose
+- Socket.io
+- Prisma
 
--   🌐 Website: [Portfolio](https://azmarif.dev/)
--   📧 Email: [azmarif.dev@gmail.com](mailto:azmarif.dev@gmail.com)
--   💼 LinkedIn: [linkedin.com/in/azmarifdev](https://linkedin.com/in/azmarifdev)
--   🐦 Twitter: [twitter.com/azmarifdev](https://twitter.com/azmarifdev)
--   📸 Instagram: [instagram.com/azmarif.dev](https://instagram.com/azmarif.dev)
--   🎥 YouTube: [youtube.com/@azmarifdev](https://youtube.com/@azmarifdev)
+### Database
 
-## 🏗️ How to Use
+- MongoDB
+- PostgreSQL
+- MySQL
+- Redis
+- Firebase
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/azmarifdev/portfolio.git
-    ```
-2. Open `index.html` in your browser.
-3. Customize as needed!
+### DevOps and Tools
 
-## 📜 License
+- Git
+- Notion
+- Jira
+- Figma
+- Vercel
+- Docker
+- Linux
+- WordPress
 
-This project is open-source and available under the [MIT License](LICENSE).
+### Exploring
+
+- AWS
+- Azure
+- GraphQL
+- Electron
+- Kotlin
+
+## Courses and Learning
+
+- DevOps (Interactive Cares) - Ongoing
+- Reactive Accelerator (Learn with Sumit) - Completed in 2024
+- Think in a Redux Way (Learn with Sumit) - Completed in 2023
+- Data Structures and Algorithms (JS Bangladesh) - Completed in 2023
+- MERN Stack Development (Programming Hero) - Completed in 2022
+- Android App Development with Java (Bongo Academy) - Completed in 2021
+
+## Experience Highlights
+
+- Happy Shoppy (2022-2023): Full-Stack Developer
+- Travel Tour (2023-2024): Full-Stack Developer
+- Code Encover (2024-2025): Full-Stack Developer
+
+## Portfolio Features
+
+- Responsive modern layout
+- Smooth scrolling and section-based navigation
+- Animated skill and content reveal effects
+- Filterable portfolio gallery
+- Certificate preview modal
+- Testimonial carousel
+- Contact form integration with EmailJS
+- Lazy loading images for improved performance
+
+## Built With
+
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- jQuery
+- Owl Carousel
+- Isotope
+- Magnific Popup
+- EmailJS
+- Font Awesome
+- Boxicons
+- Remix Icon
+
+## Run Locally
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/azmarifdev/portfolio.git
+```
+
+2. Go to project folder:
+
+```bash
+cd portfolio
+```
+
+3. Open `index.html` in your browser.
+
+## Contact
+
+- Email: [azmarif.dev@gmail.com](mailto:azmarif.dev@gmail.com)
+- LinkedIn: [linkedin.com/in/azmarifdev](https://linkedin.com/in/azmarifdev)
+- GitHub: [github.com/azmarifdev](https://github.com/azmarifdev)
+- Facebook: [facebook.com/azmarifdev](https://facebook.com/azmarifdev)
+- Twitter: [twitter.com/azmarifdev](https://twitter.com/azmarifdev)
+- YouTube: [youtube.com/@azmarifdev](https://youtube.com/@azmarifdev)
 
 ---
 
-✨ Designed & Developed by **A. Z. M. Arif** ✨
+Designed and developed by A. Z. M. Arif

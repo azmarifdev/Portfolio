@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroImage = hero.querySelector('.hero-image');
         const heroOrbits = hero.querySelectorAll('.hero-orbit');
 
-        hero.addEventListener('mousemove', (event) => {
+        const updateHeroMotion = (event) => {
             const rect = hero.getBoundingClientRect();
             const offsetX = event.clientX - rect.left - rect.width / 2;
             const offsetY = event.clientY - rect.top - rect.height / 2;
@@ -75,9 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const amount = index === 0 ? 10 : 16;
                 orbit.style.transform = `translate(${offsetX / amount}px, ${offsetY / amount}px)`;
             });
-        });
+        };
 
-        hero.addEventListener('mouseleave', () => {
+        window.addEventListener('mousemove', updateHeroMotion);
+
+        window.addEventListener('blur', () => {
             motionItems.forEach((item) => {
                 item.style.transform = '';
             });
@@ -97,14 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========== CV Download ===========
     const downloadBtn = document.getElementById('downloadCV');
     downloadBtn?.addEventListener('click', function () {
-        const pdfUrl = './assets/azmarifCV.pdf';
+        const pdfUrl = './assets/A.%20Z.%20M.%20ARIF_RESUME.pdf';
 
         fetch(pdfUrl)
             .then((response) => response.blob())
             .then((blob) => {
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
-                link.download = "A. Z. M. Arif's CV.pdf";
+                link.download = 'A. Z. M. ARIF_RESUME.pdf';
                 link.click();
                 URL.revokeObjectURL(link.href); // Free up memory
             })
@@ -112,6 +114,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Portfolio Section Starts
+    const appendPopupControls = (targetUrl) => {
+        const $content = $('.mfp-content');
+        $content.find('.mfp-open-tab, .mfp-custom-close').remove();
+
+        const openTabBtn = $(
+            `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="mfp-open-tab" aria-label="Open in new tab">Open in new tab</a>`
+        );
+
+        const closeBtn = $(
+            '<button type="button" class="mfp-custom-close" aria-label="Close modal">Close</button>'
+        );
+
+        openTabBtn.on('click', function (e) {
+            e.preventDefault();
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+            $.magnificPopup.close();
+        });
+
+        closeBtn.on('click', function () {
+            $.magnificPopup.close();
+        });
+
+        $content.append(openTabBtn, closeBtn);
+    };
+
     const openIframePopup = (previewUrl, openUrl, popupClass = '') => {
         if (!previewUrl || typeof $.magnificPopup?.open !== 'function') return;
 
@@ -123,22 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
             mainClass: popupClass,
             callbacks: {
                 open: function () {
-                    const $content = $('.mfp-content');
-                    const existingButton = $content.find('.mfp-open-tab');
-                    if (existingButton.length) {
-                        existingButton.remove();
-                    }
-
                     const targetUrl = openUrl || previewUrl;
-                    const openTabBtn = $(`<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="mfp-open-tab" aria-label="Open in new tab">↗</a>`);
-
-                    openTabBtn.on('click', function (e) {
-                        e.preventDefault();
-                        window.open(targetUrl, '_blank', 'noopener,noreferrer');
-                        $.magnificPopup.close();
-                    });
-
-                    $content.append(openTabBtn);
+                    appendPopupControls(targetUrl);
                 },
             },
         });
@@ -148,6 +161,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const setupGallery = () => {
         const $gallery = $('.gallery');
         if (!$gallery.length) return;
+
+        const blockedIframeHosts = [
+            'github.com',
+            'www.github.com',
+            'marketplace.visualstudio.com',
+            'npmjs.com',
+            'www.npmjs.com',
+        ];
+
+        const showBlockedPreviewNotice = (url) => {
+            const existingNotice = document.querySelector('.project-open-notice');
+            if (existingNotice) {
+                existingNotice.remove();
+            }
+
+            const notice = document.createElement('div');
+            notice.className = 'project-open-notice';
+            notice.innerHTML = `
+                <p>
+                    This website does not allow iframe previews. I opened it in a new tab for you.
+                    You can close the modal now if you want.
+                </p>
+                <div class="project-open-notice-actions">
+                    <button type="button" class="project-open-notice-modal-close" aria-label="Close modal">Close Modal</button>
+                </div>
+            `;
+
+            const closeNotice = () => {
+                notice.classList.remove('show');
+                setTimeout(() => notice.remove(), 220);
+            };
+
+            notice.querySelector('.project-open-notice-modal-close')?.addEventListener('click', () => {
+                if (typeof $.magnificPopup?.close === 'function') {
+                    $.magnificPopup.close();
+                }
+                closeNotice();
+            });
+            document.body.appendChild(notice);
+
+            requestAnimationFrame(() => {
+                notice.classList.add('show');
+            });
+
+            if (url) {
+                notice.setAttribute('data-opened-url', url);
+            }
+        };
+
+        const shouldOpenInNewTabOnly = (url) => {
+            if (!url) return false;
+
+            try {
+                const parsedUrl = new URL(url, window.location.origin);
+                return blockedIframeHosts.includes(parsedUrl.hostname);
+            } catch (error) {
+                return false;
+            }
+        };
 
         const imgLoad = imagesLoaded($gallery);
 
@@ -165,40 +237,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     filter: value,
                 });
             });
-
-            // Delayed layout refresh
-            setTimeout(() => $galleryContainer.isotope('layout'), 1000);
         });
 
         // =============== MAGNIFIC POPUP WITH IFRAME ===============
         $gallery.magnificPopup({
             delegate: '.overlay a',
             type: 'iframe',
+            mainClass: 'project-popup',
             gallery: {
                 enabled: false,
             },
             callbacks: {
+                beforeOpen: function () {
+                    const clickedUrl = this.st.el?.attr('href');
+
+                    if (!shouldOpenInNewTabOnly(clickedUrl)) return true;
+
+                    window.open(clickedUrl, '_blank', 'noopener,noreferrer');
+                    showBlockedPreviewNotice(clickedUrl);
+                    return false;
+                },
                 open: function () {
                     const popupInstance = $.magnificPopup.instance;
                     const currentUrl = popupInstance.currItem.src;
-                    const $content = $('.mfp-content');
-                    const existingButton = $content.find('.mfp-open-tab');
-                    if (existingButton.length) {
-                        existingButton.remove();
-                    }
-
-                    const openTabBtn = $(`<a href="${currentUrl}" target="_blank" rel="noopener noreferrer" class="mfp-open-tab" aria-label="Open in new tab">↗</a>`);
-
-                    openTabBtn.on('click', function (e) {
-                        e.preventDefault();
-                        window.open(currentUrl, '_blank', 'noopener,noreferrer');
-                        $.magnificPopup.close();
-                    });
-
-                    $content.append(openTabBtn);
+                    appendPopupControls(currentUrl);
                 },
             },
         });
+
     };
 
     // Call gallery setup
@@ -250,7 +316,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // =========== Contact Form Submission ===========
     const setupContactForm = () => {
-        const contactForm = document.getElementById('contactForm');
+        const contactSection = document.getElementById('contactForm');
+        if (!contactSection) return;
+
+        const contactForm = contactSection.querySelector('.form-2');
         if (!contactForm) return;
 
         // Add CSS for the spinner
@@ -359,29 +428,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toast Notification Function
     function showToast(message, type) {
+        let toastContainer = document.getElementById('toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.id = 'toast-container';
+            Object.assign(toastContainer.style, {
+                position: 'fixed',
+                bottom: 'max(16px, env(safe-area-inset-bottom))',
+                right: 'max(16px, env(safe-area-inset-right))',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                zIndex: '2147483647',
+                pointerEvents: 'none',
+            });
+            document.body.appendChild(toastContainer);
+        }
+
         const toast = document.createElement('div');
         toast.textContent = message;
 
         Object.assign(toast.style, {
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
+            maxWidth: 'min(92vw, 360px)',
             padding: '12px 16px',
             borderRadius: '8px',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             color: 'white',
             fontSize: '14px',
             opacity: '1',
-            transition: 'opacity 0.5s ease-in-out',
+            lineHeight: '1.4',
+            transform: 'translateY(-6px)',
+            transition: 'opacity 0.4s ease-in-out, transform 0.4s ease-in-out',
             background: type === 'success' ? '#05555c' : '#F57F17',
         });
 
-        document.body.appendChild(toast);
+        toastContainer.appendChild(toast);
+
+        requestAnimationFrame(() => {
+            toast.style.transform = 'translateY(0)';
+        });
 
         // Auto remove toast after 3 seconds
         setTimeout(() => {
             toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 500);
+            toast.style.transform = 'translateY(-6px)';
+            setTimeout(() => toast.remove(), 420);
         }, 3000);
     }
 
@@ -548,21 +639,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(offlineNotification);
 
         // Check online status and show/hide notification
-        const updateOnlineStatus = () => {
+        const updateOnlineStatus = (notifyOnline = false) => {
             if (navigator.onLine) {
                 offlineNotification.classList.remove('visible');
-                showToast('✅ You are back online!', 'success');
+                if (notifyOnline) {
+                    showToast('✅ You are back online!', 'success');
+                }
             } else {
                 offlineNotification.classList.add('visible');
             }
         };
 
         // Add event listeners for online/offline events
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
+        window.addEventListener('online', () => updateOnlineStatus(true));
+        window.addEventListener('offline', () => updateOnlineStatus(false));
 
         // Initial check
-        updateOnlineStatus();
+        updateOnlineStatus(false);
     };
 
     // Call offline detection setup
